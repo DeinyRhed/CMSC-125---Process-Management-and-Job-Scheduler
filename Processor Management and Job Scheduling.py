@@ -5,7 +5,6 @@ Programmed by: Dianne M. Mondido
 Reference:  Guru99 (7 May, 2022). Shortest Job First (SJF): Preemptive, Non-Preemptive Example. Retrieved from https://www.guru99.com/shortest-job-first-sjf-scheduling.html
             StudyTonight. Round Robin Scheduling. Retrieved From https://www.studytonight.com/operating-system/round-robin-scheduling
 
-
 """
 
 class Process:
@@ -86,8 +85,6 @@ def priority(processList:'list[Process]'):
 
 # Shortest Remaining Processing Time Scheduling
 def srpt(processList:'list[Process]'):
-    srptList = [{'process': process, 'waitingTime': 0, 'turnaroundTime': 0, 'remainingBurstTime': process.burstTime()} for process in processList]
-
     min = 99999
     tableFormat = ''
     completedProcesses = 0          
@@ -95,7 +92,9 @@ def srpt(processList:'list[Process]'):
     shortestProcess = None                   
     shortestProcess_check = False      
     averageWaitingTime = 0
-    averageTurnaroundTime = 0      
+    averageTurnaroundTime = 0 
+   
+    srptList = [{'process': process, 'waitingTime': 0, 'turnaroundTime': 0, 'remainingBurstTime': process.burstTime()} for process in processList]
 
     while completedProcesses != len(srptList):
         # Finds lowest burst time
@@ -123,7 +122,7 @@ def srpt(processList:'list[Process]'):
             completedProcesses += 1
             shortestProcess_check = False
 
-            # since this process is considered done when it reaches here, we can set final waitingTime and turnaroundTime values here
+            # Since this process is considered done when it reaches here, we can set final waitingTime and turnaroundTime values here
             shortestProcess['waitingTime'] = ((currentTime + 1) - shortestProcess['process'].burstTime() - shortestProcess['process'].arrivalTime())
             shortestProcess['turnaroundTime'] = shortestProcess['process'].burstTime() + shortestProcess['waitingTime']
 
@@ -142,11 +141,12 @@ def srpt(processList:'list[Process]'):
 
 # Round Robin Scheduling
 def roundrobin(processList:'list[Process]', quantum = 4):
-    rrList = [{'process': process, 'waitingTime': 0, 'turnaroundTime': 0, 'remainingBurstTime': process.burstTime()} for process in processList]
     tableFormat = ''
     turnaroundTime = 0 
     averageWaitingTime = 0
     averageTurnaroundTime = 0
+   
+    rrList = [{'process': process, 'waitingTime': 0, 'turnaroundTime': 0, 'remainingBurstTime': process.burstTime()} for process in processList]
 
     while True:
         ifDone = True
