@@ -1,4 +1,4 @@
-# CMSC-125---Process-Management-and-Job-Scheduler
+# CMSC-125---Processor-Management-and-Job-Scheduler
 Implement the FCFS, SJF, SRPT, Priority and Round-robin scheduling. Sample data is given to you (please refer to process1.txt and process2.txt).
 
 - For FCFS and SJF, assume all processes arrived at time 0 in that order.
